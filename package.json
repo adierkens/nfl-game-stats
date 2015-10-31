@@ -1,0 +1,29 @@
+{
+  "name": "nfl-game-stats",
+  "version": "0.0.1",
+  "description": "NFL game statistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/adierkens/nfl-game-stats.git"
+  },
+  "keywords": [
+    "nfl",
+    "fantasy",
+    "football",
+    "stats"
+  ],
+  "author": "Adam Dierkens <adam@dierkens.com> (adamdierkens.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adierkens/nfl-game-stats/issues"
+  },
+  "homepage": "https://github.com/adierkens/nfl-game-stats#readme",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
+  }
+}
