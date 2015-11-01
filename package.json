@@ -27,6 +27,8 @@
     "mocha": "^2.3.3"
   },
   "dependencies": {
-    "fantasy-football-nerd": "^1.0.0"
+    "fantasy-football-nerd": "^1.0.0",
+    "lodash": "^3.10.1",
+    "request": "^2.65.0"
   }
 }

@@ -1,16 +1,17 @@
+'use strict';
 var _ = require('lodash');
 
 var master_list = {
     ARI: {
-        alias: 'Arizona Cardinals'
+        alias: 'Arizona Cardinals',
         id: '022'
     },
     ATL: {
-        alias 'Atlanta Falcons',
+        alias: 'Atlanta Falcons',
         id: '001'
     },
     BAL: {
-        aliases: 'Baltimore Ravens',
+        alias: 'Baltimore Ravens',
         id: '033'
     },
     BUF: {
@@ -152,6 +153,6 @@ function getIDForTeam(team) {
 }
 
 module.exports = {
-    getIDForTeam: getIDForTeam,,
-    normailzeTeamName: normailzeTeamName
+    getIDForTeam: getIDForTeam,
+    normalizeTeamName: normalizeTeamName
 }
