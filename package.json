@@ -25,5 +25,8 @@
   "devDependencies": {
     "chai": "^3.4.0",
     "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "fantasy-football-nerd": "^1.0.0"
   }
 }
