@@ -71,7 +71,18 @@ class NFLGameStats {
     }
 
     player(nm, wk, callback) {
-    
+        if (arguments.length == 1) {
+           callback({});
+        } else if (arguments.length == 2) {
+           callback = wk;
+           wk = null;
+        }
+
+        if (wk) {
+        
+        } else {
+        
+        }
     }
 
     team(tm, wk, callback) {
@@ -81,24 +92,58 @@ class NFLGameStats {
             callback = wk;
             wk = null;
         }
-        
+       
+        var self = this; 
         tm = teamIDs.normalizeTeamName(tm);
 
         if (wk) {
             var wk_games = this.schedule[wk];
-            var self = this;
             _.each(wk_games, function(gm) {
                 if (gm.awayTeam == tm || gm.homeTeam == tm) {
                     self._gameStats(gm, callback);
                 }           
             });       
         } else {
-        
+            var responses_in_flight = 0;
+            var responses = [];
+            
+            _.each(this.schedule, function(gms, wk) {
+                _.each(gms, function(gm) {
+                    if (gm.awayTeam == tm || gm.homeTeam == tm) {
+                        responses_in_flight += 1;
+                        self._gameStats(gm, function(stats) {
+                            responses.push(stats);
+                            if (responses_in_flight == 1) {
+                                callback(responses);
+                            }
+                            responses_in_flight -= 1;
+                        });
+                    }
+                });
+            });
         }
     }
 
     week(wk, callback) {
-       
+        if (arguments.length != 2) {
+            callback({});
+        }
+        
+        var responses_in_flight = 0;
+        var responses = [];
+
+        var self = this;
+        var wk_games = this.schedule[wk];
+        _.each(wk_games, function(gm) {
+            responses_in_flight += 1;
+            self._gameStats(gm, function(stats) {
+                responses.push(stats);
+                if (responses_in_flight == 1) {
+                    callback(responses);
+                }
+                responses_in_flight -= 1;
+            });           
+        });
     }
 }
 
