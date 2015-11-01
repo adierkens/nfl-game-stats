@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-``` npm install --save fantasy-football-nerd ```
+``` npm install --save nfl-game-stats ```
 
 ## Usage
 
