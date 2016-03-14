@@ -49,9 +49,11 @@ class NFLGameStats {
     }
 
     _sanitize(json) {
-        _.each(json.scoring_plays, function(play) {
-            delete play._state;   
-        });
+        if (json && json.scoring_plays) {
+          _.each(json.scoring_plays, function(play) {
+              delete play._state;   
+          });
+        }
         return json;
     }
 
