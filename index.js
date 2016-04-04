@@ -3,6 +3,10 @@ var FFNerd = require('fantasy-football-nerd');
 var _ = require('lodash');
 var request = require('request');
 var teamIDs = require('./teamID.js');
+var moment = require('moment');
+
+const rateLimit = 750; // ms
+var lastSent = 0;
 
 class NFLGameStats {
     constructor(options) {
@@ -58,13 +62,29 @@ class NFLGameStats {
     }
 
     _sendRequest(url, callback) {
-        callback = callback || function(){};
         var self = this;
-        request(url, function(err, response, body) {
-            var json = JSON.parse(body);
-            json = self._sanitize(json.objects[0]);
-            callback(json);
-        });
+        var now = moment().valueOf();
+
+        if ((now - lastSent) < rateLimit) {
+            setTimeout(function() {
+                self._sendRequest(url, callback);
+            }, rateLimit);
+        } else {
+            callback = callback || function () {};
+            lastSent = now;
+            request(url, function (err, response, body) {
+                try {
+                    var json = JSON.parse(body);
+                    json = self._sanitize(json.objects[0]);
+                    callback(json);
+                } catch (e) {
+                    console.log('Error sending request to ' + url);
+                    console.log('Status code ' + response.statusCode);
+                    console.log(e);
+                    console.log(e.stack)
+                }
+            });
+        }
     }
 
     _gameStats(gm, callback) {
@@ -130,21 +150,26 @@ class NFLGameStats {
         if (arguments.length != 2) {
             callback({});
         }
-        
+
         var responses_in_flight = 0;
         var responses = [];
 
         var self = this;
         var wk_games = this.schedule[wk];
-        _.each(wk_games, function(gm) {
+        _.each(wk_games, function (gm) {
             responses_in_flight += 1;
-            self._gameStats(gm, function(stats) {
-                responses.push(stats);
-                if (responses_in_flight == 1) {
-                    callback(responses);
-                }
-                responses_in_flight -= 1;
-            });           
+            try {
+                self._gameStats(gm, function (stats) {
+                    responses.push(stats);
+                    if (responses_in_flight == 1) {
+                        callback(responses);
+                    }
+                    responses_in_flight -= 1;
+                });
+            } catch (e) {
+                console.log('Error getting info for week ' + wk + ' gm');
+                console.log(gm);
+            }
         });
     }
 }
