@@ -16,7 +16,7 @@ var master_list = {
     },
     BUF: {
         alias: 'Buffalo Bills',
-        id: ''
+        id: '002'
     },
     CAR: {
         alias: 'Carolina Panthers',
@@ -44,11 +44,11 @@ var master_list = {
     },
     DET: {
         alias: 'Detroit Lions',
-        id: ''
+        id: '008'
     },
     GB: {
         alias: 'Green Bay Packers',
-        id: ''
+        id: '009'
     },
     HOU: {
         alias: 'Houston Texans',
@@ -56,11 +56,11 @@ var master_list = {
     },
     IND: {
         alias: 'Indianapolis Colts',
-        id: ''
+        id: '011'
     },
     JAC: {
         alias: 'Jacksonville Jaguars',
-        id: ''
+        id: '030'
     },
     KC: {
         alias: 'Kansas City Chiefs',
@@ -68,19 +68,19 @@ var master_list = {
     },
     MIA: {
         alias: 'Miami Dolphins',
-        id: ''
+        id: '015'
     },
     MIN: {
         alias: 'Minnesota Vikings',
-        id: ''
+        id: '016'
     },
     NYG: {
         alias: 'NY Giants',
-        id: ''
+        id: '019'
     },
     NYJ: {
         alias: 'NY Jets',
-        id: ''
+        id: '020'
     },
     NE: {
         alias: 'New England Patriots',
@@ -96,7 +96,7 @@ var master_list = {
     },
     PHI: {
         alias: 'Philadelphia Eagles',
-        id: ''
+        id: '021'
     },
     PIT: {
         alias: 'Pittsburgh Steelers',
@@ -104,15 +104,15 @@ var master_list = {
     },
     SD: {
         alias: 'San Diego Chargers',
-        id: ''
+        id: '024'
     },
     SF: {
         alias: 'San Francisco 49ers',
-        id: ''
+        id: '025'
     },
     SEA: {
         alias: 'Seattle Seahawks',
-        id: ''
+        id: '026'
     },
     STL: {
         alias: 'St. Louis Rams',
@@ -120,15 +120,15 @@ var master_list = {
     },
     TB: {
         alias: 'Tampa Bay Buccaneers',
-        id: ''
+        id: '027'
     },
     TEN: {
         alias: 'Tennessee Titans',
-        id: ''
+        id: '010'
     },
     WAS: {
         alias: 'Washington Redskins',
-        id: ''
+        id: '028'
     }
 }
 
